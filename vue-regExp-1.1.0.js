@@ -4,13 +4,15 @@
  * @email: chennengbao@mj216.com
  * @Date:   2017-03-15 14:07:47
  * @Last Modified by:   陈能堡 - 梦幻雪冰
- * @Last Modified time: 2017-03-17 18:07:32
+ * @Last Modified time: 2017-03-20 17:35:05
  *
  * 文档说明
  * name                                 description
  * 
  * Vue.phoneByReg(param, config)        验证手机号码格式
  * Vue.emailByReg(param, config)        电子邮箱验证
+ * Vue.passwordByReg(param, config)     密码验证
+ * Vue.verifyCodeByReg(param, config)   数字验证码验证
  */
 ;(function() {
     /******** 公用属性开始 *********/
@@ -24,11 +26,16 @@
         // 电信号码
         telecomReg: /^(133|153|17[37]|18[019]|170)\d$/g,
         // 电子邮箱
-        emailReg: /^([a-zA-Z0-9_\+\-\.])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})$/g
+        emailReg: /^([a-zA-Z0-9_\+\-\.])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})$/g,
+        // 密码
+        passwordReg: /^(?=[a-z0-9]*\d)(?=[a-z0-9]*[a-z])[0-z0-9]{6,20}$/gi
     },
+
     infoObj = {
         phoneError: '手机号码错误',
-        emailError: '邮箱格式错误'
+        emailError: '邮箱格式错误',
+        verifyCodeError: '验证码错误',
+        passwordError: '密码由6~20位的数字、字母组成'
     },
     /******** 公用属性结束 *********/
 
@@ -140,6 +147,80 @@
             }
 
             return resultObj;
+        },
+
+        /*
+         * [verifyCodeByReg 数字验证码验证]
+         * @param  {[type]} verifyCode [数字验证码]
+         * @param  {[type]} config     [配置对象]
+         * @return {[type]}            [返回验证结果]
+         *
+         * @demo
+         * Vue.verifyCodeByReg('1314', {
+         *     count: 4, 
+         *     error: '验证码有误哦'
+         * })
+         */
+        verifyCodeByReg: function(verifyCode, config) {
+            var verifyCodeStr       = cnbTool.strTrim(verifyCode),
+                // 返回结果
+                resultObj           = {},
+                verifyCodeReg       = new RegExp('^\\d{' + config['count'] + '}$', 'gi'),
+                // 自定义错误信息
+                verifyCodeError     = infoObj.verifyCodeError;
+
+            // 判断传入的配置信息
+            if (typeof config == 'object') {
+                verifyCodeError = config['error'] ? config['error'] : infoObj.verifyCodeError;                
+            }
+
+            if (verifyCodeReg.test(verifyCodeStr)) {
+                verifyCodeReg.lastIndex = 0;
+
+                resultObj['check']  = true;   
+                resultObj['success'] = '匹配成功';             
+            } else {
+                resultObj['check']  = false;
+                resultObj['error'] = verifyCodeError;
+            }
+
+            return resultObj;
+        },
+
+        /*
+         * [passwordByReg 密码验证]
+         * @param  {[type]} password [6-20的密码]
+         * @param  {[type]} config   [配置信息]
+         * @return {[type]}          [返回验证结果]
+         *
+         * @demo
+         * Vue.passwordByReg('chennengbao1314520', {
+         *     error: '密码有误哦'
+         * })
+         */
+        passwordByReg: function(password, config) {
+            var passwordStr     = cnbTool.strTrim(password),
+                // 返回结果
+                resultObj       = {},
+                // 自定义错误信息
+                passwordError   = infoObj.passwordError;
+
+            // 判断传入的配置信息
+            if (typeof config == 'object') {
+                passwordError = config['error'] ? config['error'] : infoObj.passwordError;                
+            }
+
+            if (regObj.passwordReg.test(passwordStr)) {
+                regObj.passwordReg.lastIndex = 0;
+
+                resultObj['check']  = true;   
+                resultObj['success'] = '匹配成功';             
+            } else {
+                resultObj['check']  = false;
+                resultObj['error'] = passwordError;
+            }
+
+            return resultObj;            
         }
     };
 
@@ -151,6 +232,10 @@
         Vue.phoneByReg = cnbTool.phoneByReg;
         // 电子邮箱验证
         Vue.emailByReg = cnbTool.emailByReg;
+        // 数字验证码验证
+        Vue.verifyCodeByReg = cnbTool.verifyCodeByReg;
+        // 密码验证
+        Vue.passwordByReg = cnbTool.passwordByReg;
     };
     
     // 暴露接口
@@ -160,6 +245,7 @@
         define([], function() { return cnbPlugin;});
     } else if(window.Vue) {
         window.cnbPlugin = cnbPlugin;
+        Vue.use(cnbPlugin);
     }
 })();
 
