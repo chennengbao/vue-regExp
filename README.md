@@ -4,22 +4,22 @@
 ## update log
 
 #### V1.1.0 ####
+ 文档说明
  
-     文档说明
-     name 											description
-      
-     Vue.phoneByReg(param, config)					验证手机号码格式
-     Vue.emailByReg(param, config)					电子邮箱验证
-	 Vue.passwordByReg(param, config)				密码验证
-	 Vue.verifyCodeByReg(param, config)				数字验证码验证
+  |  name | description  |
+| ------------ | ------------ |
+|  Vue.phoneByReg(param, config) | 验证手机号码格式  |
+| Vue.emailByReg(param, config)  | 电子邮箱验证  |
+|Vue.passwordByReg(param, config)|密码验证|
+|Vue.verifyCodeByReg(param, config)|数字验证码验证|
 
 #### V1.0.0 ####
- 
-     文档说明
-     name 											description
-      
-     Vue.phoneByReg(param, config)					验证手机号码格式
-     Vue.emailByReg(param, config)					电子邮箱验证
+文档说明
+
+ |  name | description  |
+| ------------ | ------------ |
+|  Vue.phoneByReg(param, config) | 验证手机号码格式  |
+| Vue.emailByReg(param, config)  | 电子邮箱验证  |
 
 # demo #
 
