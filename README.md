@@ -3,6 +3,21 @@
 [梦幻雪冰](https://github.com/chennengbao)
 ## update log
 
+#### V1.2.0 ####
+ 文档说明
+ 
+  |  name | description  |
+| ------------ | ------------ |
+|Vue.idCarNoByReg(param, config)|身份证号码验证|
+|Vue.telePhoneByReg(param, config)|电话号码验证|
+|Vue.weixinByReg(param, config)|微信号码验证|
+|Vue.chineseByReg(param, config)|中文验证|
+|Vue.urlByReg(param, config)|url验证|
+|Vue.phoneByReg(param, config) | 验证手机号码格式  |
+|Vue.emailByReg(param, config)  | 电子邮箱验证  |
+|Vue.passwordByReg(param, config)|密码验证|
+|Vue.verifyCodeByReg(param, config)|数字验证码验证|
+
 #### V1.1.0 ####
  文档说明
  
@@ -32,20 +47,59 @@
 
 ## 【2】邮箱验证 ##
 
-	Vue.emailByReg('18050905128', {
+	Vue.emailByReg('chennengbao@mj216.com', {
 	    error: '邮箱格式不对' // [可选]
 	})
 
-## 【3】密码验证 ##
+## 【3】验证码验证 ##
 
 	Vue.verifyCodeByReg('1314', {
-	    count: 4, 
-	    error: '验证码有误哦'
+	    count: 4, // [必选]
+	    error: '验证码有误哦' // [可选]
 	})
 
+## 【4】密码验证 ##
 
-## 【4】数字验证码验证 ##
-
-	Vue.passwordByReg('chennengbao1314520', {
-	    error: '密码有误哦'
+	Vue.passwordByReg('mj216com', {
+	    error: '密码有误哦' // [可选]
 	})
+	
+## 【5】身份证号码验证 ##
+
+	console.log(
+		Vue.idCarNoByReg('321083197812162118', {
+			error: '身份证有误哦' // [可选]
+		})
+	)	
+
+## 【6】电话号码验证 ##
+
+	console.log(
+		Vue.telePhoneByReg('0592-5378199', {
+			error: '电话号码有误' // [可选]
+		})
+	)
+
+## 【7】微信号码验证 ##
+
+	console.log(
+		Vue.weixinByReg('cnb718747239', {
+			error: '微信号有误' // [可选]
+		})
+	)
+
+## 【8】中文验证 ##
+
+	console.log(
+		Vue.chineseByReg('梦幻雪冰', {
+			error: '不是中文' // [可选]
+		})
+	)
+
+## 【9】url验证 ##
+
+	console.log(
+		Vue.urlByReg('http://www.h5course.com/a/20151114316.html', {
+			error: 'url有误哦' // [可选]
+		})
+	)
