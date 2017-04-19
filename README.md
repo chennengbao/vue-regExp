@@ -66,40 +66,30 @@
 	
 ## 【5】身份证号码验证 ##
 
-	console.log(
-		Vue.idCarNoByReg('321083197812162118', {
-			error: '身份证有误哦' // [可选]
-		})
-	)	
+	Vue.idCarNoByReg('321083197812162118', {
+		error: '身份证有误哦' // [可选]
+	})
 
 ## 【6】电话号码验证 ##
 
-	console.log(
-		Vue.telePhoneByReg('0592-5378199', {
-			error: '电话号码有误' // [可选]
-		})
-	)
+	Vue.telePhoneByReg('0592-5378199', {
+		error: '电话号码有误' // [可选]
+	})
 
 ## 【7】微信号码验证 ##
 
-	console.log(
-		Vue.weixinByReg('cnb718747239', {
-			error: '微信号有误' // [可选]
-		})
-	)
+	Vue.weixinByReg('cnb718747239', {
+		error: '微信号有误' // [可选]
+	})
 
 ## 【8】中文验证 ##
 
-	console.log(
-		Vue.chineseByReg('梦幻雪冰', {
-			error: '不是中文' // [可选]
-		})
-	)
+	Vue.chineseByReg('梦幻雪冰', {
+		error: '不是中文' // [可选]
+	})
 
 ## 【9】url验证 ##
 
-	console.log(
-		Vue.urlByReg('http://www.h5course.com/a/20151114316.html', {
-			error: 'url有误哦' // [可选]
-		})
-	)
+	Vue.urlByReg('http://www.h5course.com/a/20151114316.html', {
+		error: 'url有误哦' // [可选]
+	})
